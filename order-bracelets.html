@@ -643,6 +643,19 @@ fbq('track', 'InitiateCheckout');
 
             <div class="form-group">
               <label class="form-label">
+                رقم هاتف بديل
+              </label>
+              <input
+                type="tel"
+                id="altPhone"
+                name="altPhone"
+                class="form-input"
+                placeholder="01xxxxxxxxx"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
                 <span class="required">*</span>
                 المحافظة
               </label>
@@ -892,9 +905,10 @@ fbq('track', 'InitiateCheckout');
           straightQty: parseInt(document.getElementById('straightQty').value) || 0,
           curvedQty: parseInt(document.getElementById('curvedQty').value) || 0,
           curvedGoldQty: parseInt(document.getElementById('curvedGoldQty').value) || 0,
-          totalPrice: (parseInt(document.getElementById('straightQty').value) || 0) * 360 +
-                      (parseInt(document.getElementById('curvedQty').value) || 0) * 360 +
-                      (parseInt(document.getElementById('curvedGoldQty').value) || 0) * 360,
+          altPhone: document.getElementById('altPhone').value.trim(),
+          totalPrice: (parseInt(document.getElementById('straightQty').value) || 0) * 460 +
+                      (parseInt(document.getElementById('curvedQty').value) || 0) * 460 +
+                      (parseInt(document.getElementById('curvedGoldQty').value) || 0) * 460,
           timestamp: new Date().toISOString()
         };
 

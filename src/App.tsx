@@ -53,7 +53,7 @@ function App() {
 
     try {
       const totalQuantity = data.straightQuantity + data.curvedQuantity + data.curvedGoldQuantity;
-      const totalPrice = totalQuantity * 360;
+      const totalPrice = totalQuantity * 460;
 
       const formDataToSend = {
         name: data.name,
