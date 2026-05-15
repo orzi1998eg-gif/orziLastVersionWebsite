@@ -519,9 +519,6 @@ fbq('init', '2204816053376578');
 fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
-    <script>
-fbq('track', 'InitiateCheckout');
-    </script>
   </head>
   <body>
     <header>
@@ -891,6 +888,9 @@ fbq('track', 'InitiateCheckout');
         if (!phone) {
           showError('phoneError', 'رقم الهاتف مطلوب');
           isValid = false;
+        } else if (!/^01\d{9}$/.test(phone)) {
+          showError('phoneError', 'رقم الهاتف يجب أن يكون 11 رقم ويبدأ بـ 01');
+          isValid = false;
         }
 
         const governorate = document.getElementById('governorate').value;
@@ -977,7 +977,17 @@ fbq('track', 'InitiateCheckout');
             },
             body: JSON.stringify(formData),
           });
-fbq('track', 'Lead');
+const finalPrice = (parseInt(document.getElementById('straightQty').value) || 0) * 460 +
+                   (parseInt(document.getElementById('curvedQty').value) || 0) * 460 +
+                   (parseInt(document.getElementById('curvedGoldQty').value) || 0) * 460;
+fbq('track', 'Purchase', {
+  value: finalPrice,
+  currency: 'EGP',
+  content_name: 'ORZI Heritage Bracelets',
+  num_items: (parseInt(document.getElementById('straightQty').value) || 0) +
+             (parseInt(document.getElementById('curvedQty').value) || 0) +
+             (parseInt(document.getElementById('curvedGoldQty').value) || 0)
+});
           modal.classList.add('active');
           form.reset();
           areaSelect.disabled = true;
